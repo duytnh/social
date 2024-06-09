@@ -1,0 +1,186 @@
+.friends {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+    p {
+        font-weight: 500;
+    }
+}
+
+.icon-dont-friend,
+.icon-friend,
+.icon-sended {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 2%;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+
+    .dont-friend-info,
+    .friend-info,
+    .sended-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    .btn-add-friend {
+        padding: 0 20px;
+
+        button {
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: none;
+            background-color: rgb(39, 39, 252);
+            color: #fff;
+            box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.45);
+        }
+
+        button:hover {
+            background-color: rgb(64, 64, 211);
+            color: #fff;
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+    }
+
+    .btnFriend {
+        padding: 0 20px;
+
+        button {
+            background-color: #e3e3e3;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: rgb(238, 109, 34);
+        }
+    }
+
+    .btn-sended {
+        padding: 0 20px;
+
+        button {
+            background-color: #e3e3e3;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+    }
+}
+
+.icon-send-friend {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 2%;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+
+    .send-friend-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    .btn-send-friend {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 20px;
+
+        button {
+            width: 40px;
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.45);
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+
+        .fa-user-check {
+            color: rgb(39, 39, 252);
+        }
+
+        .fa-user-xmark {
+            color: rgb(252, 135, 39);
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .icon-dont-friend,
+    .icon-send-friend,
+    .icon-friend,
+    .icon-sended {
+        width: 96%;
+        margin: 6px 2%;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+
+    .icon-dont-friend,
+    .icon-send-friend,
+    .icon-friend,
+    .icon-sended {
+        width: 90%;
+        margin: 6px 5%;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+
+    .icon-dont-friend,
+    .icon-send-friend,
+    .icon-friend,
+    .icon-sended {
+        width: 70%;
+        margin: 6px 15%;
+    }
+}

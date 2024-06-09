@@ -1,0 +1,40 @@
+.notify-box {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 83px;
+    align-items: center;
+    background-color: rgb(203, 230, 255);
+    border-bottom: 1px solid #cccbcbb0;
+
+    img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+
+    .notify-content {
+
+        h6 {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 0px;
+            margin-top: 25px;
+        }
+
+        span {
+            font-size: 10px;
+            color: #979797;
+            line-height: -5px;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 300;
+        }
+    }
+}
+
+.unread {
+    background-color: #ffffff;
+}

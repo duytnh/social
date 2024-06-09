@@ -1,0 +1,20 @@
+.friends-page {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 96%;
+
+    h6 {
+        font-weight: 400;
+        margin: 5px 2%;
+        padding: 0 10px;
+    }
+
+    .btn-more {
+        border: none;
+        background-color: transparent;
+        color: rgb(0, 0, 109);
+        font-size: 28px;
+    }
+}

@@ -1,0 +1,200 @@
+.personal {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1%;
+}
+
+.picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin-top: 8px;
+
+    .background-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+
+    .avt-img {
+        position: absolute;
+        bottom: -60px;
+        left: 50%;
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        border: 4px solid #fff;
+        object-fit: cover;
+        transform: translateX(-50%);
+    }
+}
+
+.info {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        width: 99%;
+        padding: 5px;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-top: 10px;
+        background-color: rgba(54, 54, 253, 0.87);
+    }
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0.5%;
+}
+
+.list-friend {
+    button {
+        width: 99%;
+        padding: 5px;
+        border: none;
+        color: #000;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-top: 10px;
+        background-color: #ccc;
+    }
+
+    h6 {
+        font-weight: 400;
+    }
+}
+
+.lists {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+}
+
+@media only screen and (max-width: 480px) {
+    .lists {
+        column-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 50px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    .lists {
+        column-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 200px;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .lists {
+        column-gap: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 500px;
+    }
+}
+
+.post-list {
+    h5 {
+        font-weight: 400;
+        text-align: center;
+    }
+}
+
+.relationship-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn-relationship-add {
+        margin: 15px 0;
+
+        button {
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: none;
+            background-color: rgb(39, 39, 252);
+            color: #fff;
+            box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.45);
+        }
+
+        button:hover {
+            background-color: rgb(64, 64, 211);
+            color: #fff;
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+    }
+
+    .btn-relationship-sended {
+        margin: 15px 0;
+
+        button {
+            background-color: #e3e3e3;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+    }
+
+    .btn-relationship-issend {
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+        button {
+            width: 130px;
+            height: 38px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.45);
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+
+        .fa-user-check {
+            color: rgb(39, 39, 252);
+        }
+
+        .fa-user-xmark {
+            color: rgb(252, 135, 39);
+        }
+    }
+
+    .btn-relationship-friend {
+        margin: 15px 0;
+
+        button {
+            background-color: #e3e3e3;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: rgb(238, 109, 34);
+        }
+    }
+}

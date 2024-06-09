@@ -1,0 +1,155 @@
+body {
+    padding-top: 100px;
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        padding-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    body {
+        padding-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    body {
+        padding-top: 115px;
+    }
+}
+
+.header {
+    position: fixed;
+    top: -5px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5px;
+    width: 100%;
+    padding: 5px;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 93px;
+}
+
+.header-top {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+
+    input {
+        padding-left: 5px;
+        width: 100%;
+        border: 1px solid #eee;
+        padding: 5px;
+        outline: none;
+        position: relative;
+    }
+
+    span {
+        position: absolute;
+        right: 10px;
+        top: 7px;
+        color: #a0a0a0;
+    }
+
+}
+
+.header-bottom {
+    gap: 25px;
+}
+
+
+.header-bottom>ul {
+    width: 100%;
+    max-width: 1340px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style-type: none;
+        text-decoration: none;
+        font-size: 30px;
+
+        a:hover {
+            color: rgb(124, 161, 67);
+        }
+
+        a {
+            &.selected {
+                color: rgb(124, 161, 67);
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .header-bottom>ul {
+        max-width: 1200px;
+        gap: 20px;
+
+        li {
+            font-size: 25px;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .header-bottom {
+        gap: 20px;
+    }
+
+    .header-bottom>ul {
+        max-width: 992px;
+        gap: 15px;
+
+        li {
+            font-size: 22px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .header-bottom {
+        gap: 15px;
+    }
+
+    .header-bottom>ul {
+        max-width: 768px;
+        gap: 10px;
+
+        li {
+            font-size: 20px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .header-bottom {
+        gap: 10px;
+    }
+
+    .header-bottom>ul {
+        max-width: 100%;
+        gap: 5px;
+
+        li {
+            font-size: 18px;
+        }
+    }
+
+    .header-bottom-left {
+        img {
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
