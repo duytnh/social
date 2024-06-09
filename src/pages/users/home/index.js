@@ -77,7 +77,7 @@ function HomePage() {
                             user_avatar={post.user_avatar}
                             user_fullname={post.user_fullname}
                             created_at={post.created_at}
-                            description={post.descriptions}
+                            description={post.description}
                             images={post.images}
                             total_likes={post.total_likes}
                             total_comments={post.total_comments}
