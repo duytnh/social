@@ -37,6 +37,8 @@ const Friend = () => {
         fetchSendFriend();
     }, [token]);
 
+    console.log(hasMore);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');

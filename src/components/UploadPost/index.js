@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './style.scss';
 import { useSelector } from 'react-redux';
+import Webcam from 'react-webcam';
 import apiPost from '../../services/PostService';
 import AlertSuccess from '../Alert/AlertSuccess';
 import AlertError from '../Alert/AlertError';
@@ -11,9 +12,13 @@ function UploadPost() {
     const [previewImages, setPreviewImages] = useState([]);
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const [cameraActive, setCameraActive] = useState(false);
+    const [facingMode, setFacingMode] = useState('user');
 
     const user = useSelector(state => state.auth.user);
     const token = user && user.jwt;
+
+    const webcamRef = useRef(null);
 
     useEffect(() => {
         if (message) {
@@ -32,14 +37,31 @@ function UploadPost() {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        if (files.length > 4) {
-            alert.error('Chỉ có thể tải lên tối đa 4 ảnh');
+        if (files.length + images.length > 4) {
+            setError('Chỉ có thể tải lên tối đa 4 ảnh');
             return;
         }
 
-        setImages(files);
-        setPreviewImages(files.map(file => URL.createObjectURL(file)));
+        const newImages = [...images, ...files];
+        setImages(newImages);
+        setPreviewImages(newImages.map(file => URL.createObjectURL(file)));
     };
+
+    const handleCapture = useCallback(() => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        fetch(imageSrc)
+            .then(res => res.blob())
+            .then(blob => {
+                const file = new File([blob], `photo-${Date.now()}.jpg`, { type: 'image/jpeg' });
+                const newImages = [...images, file];
+                if (newImages.length > 4) {
+                    setError('Chỉ có thể tải lên tối đa 4 ảnh');
+                    return;
+                }
+                setImages(newImages);
+                setPreviewImages(newImages.map(file => URL.createObjectURL(file)));
+            });
+    }, [images]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -65,6 +87,10 @@ function UploadPost() {
         }
     };
 
+    const toggleCamera = () => {
+        setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
+    };
+
     return (
         <div className="upload-image-container">
             <h4>Tải lên bài viết</h4>
@@ -75,7 +101,7 @@ function UploadPost() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <input type="file" accept="image/*" multiple onChange={handleImageChange} required />
+                <input type="file" accept="image/*" multiple onChange={handleImageChange} />
                 <div className={`preview-images layout-${previewImages.length}`}>
                     {previewImages.map((src, index) => (
                         <div key={index} className="preview-image">
@@ -85,8 +111,29 @@ function UploadPost() {
                 </div>
                 <button type="submit"><i className="fa-solid fa-cloud-arrow-up"></i> Tải ảnh lên</button>
             </form>
+
             {message && (<AlertSuccess message={message} />)}
             {error && (<AlertError message={error} />)}
+
+            <button className='on-camera' onClick={() => setCameraActive(true)}>
+                <i className="fa-solid fa-camera"></i>
+            </button>
+
+            <div className="camera-container">
+                {cameraActive && (
+                    <div className='camera'>
+                        <Webcam
+                            audio={false}
+                            ref={webcamRef}
+                            screenshotFormat="image/jpeg"
+                            videoConstraints={{ facingMode }}
+                        />
+                        <center><button className='capture' onClick={handleCapture}><i className="fa-regular fa-circle-dot"></i></button></center>
+                        <button className='off-camera' onClick={() => setCameraActive(false)}><i className="fa-solid fa-power-off"></i></button>
+                        <button className='toggle-camera' onClick={toggleCamera}><i className="fa-solid fa-camera-rotate"></i></button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

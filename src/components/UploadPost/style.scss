@@ -1,5 +1,15 @@
 .upload-image-container {
     width: 100%;
+    position: relative;
+
+    .on-camera {
+        position: absolute;
+        top: 35px;
+        right: 10px;
+        border: none;
+        background-color: transparent;
+        font-size: 25px;
+    }
 
     form {
         display: flex;
@@ -102,5 +112,84 @@
     .layout-4 {
         padding-left: 0px;
         padding-right: 0px;
+    }
+}
+
+.camera-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+
+    .camera {
+        position: relative;
+
+        video {
+            width: 640px;
+            height: 600px;
+        }
+
+        .capture {
+            position: absolute;
+            bottom: 10px;
+            font-size: 40px;
+            border: none;
+            background-color: transparent;
+            color: red;
+        }
+
+        .off-camera {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            border: none;
+            background-color: transparent;
+            color: rgb(0, 0, 0);
+        }
+
+        .toggle-camera {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            border: none;
+            background-color: transparent;
+            color: rgb(0, 0, 0);
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .camera-container {
+        .camera {
+            video {
+                width: 360px;
+                height: max-content;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+    .camera-container {
+        .camera {
+            video {
+                width: 400px;
+                height: 360px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    .camera-container {
+        .camera {
+            video {
+                width: 720px;
+                height: 360px;
+            }
+        }
     }
 }
