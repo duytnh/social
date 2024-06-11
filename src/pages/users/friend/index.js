@@ -42,6 +42,7 @@ const Friend = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');
+            setMessage('');
         }, 3000);
         return () => clearTimeout(timer);
 

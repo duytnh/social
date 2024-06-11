@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function IconComment({ avatar, name, created, content, userid, comment_id, handleDeleteComment }) {
     const user = useSelector(state => state.auth.user);
-    const image_cmt = avatar.replace('../../', 'https://booksfacefake.000webhostapp.com/mediaBE/');
+    const image_cmt = avatar && avatar.replace('../../', 'https://booksfacefake.000webhostapp.com/mediaBE/');
 
     const navigate = useNavigate();
     const detailsUser = () => {

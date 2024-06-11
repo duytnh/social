@@ -10,7 +10,7 @@ function DetailsPost() {
     const token = user && user.jwt;
     const { id } = useParams();
 
-    const [post, setPost] = useState([]);
+    const [post, setPost] = useState(null);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -43,23 +43,20 @@ function DetailsPost() {
 
     return (
         <div>
-            {post.map((item, index) => {
-                return (
-                    <Post
-                        key={index}
-                        user_avatar={item.user_avatar}
-                        user_fullname={item.user_fullname}
-                        created_at={item.created_at}
-                        description={item.description}
-                        images={item.images}
-                        total_likes={item.total_likes}
-                        total_comments={item.total_comments}
-                        comments={item.comments}
-                        post_id={item.post_id}
-                        userId_post={item.user_id}
-                    />
-                );
-            })}
+            {post && (
+                <Post
+                    user_avatar={post.user_avatar}
+                    user_fullname={post.user_fullname}
+                    created_at={post.created_at}
+                    description={post.description}
+                    images={post.images}
+                    total_likes={post.total_likes}
+                    total_comments={post.total_comments}
+                    comments={post.comments}
+                    post_id={post.post_id}
+                    userId_post={post.user_id}
+                />
+            )}
             {error && (<AlertError message={error} />)}
         </div>
     )
