@@ -12,5 +12,11 @@ export const ROUTERS = {
     ADMIN: {
         LOGIN: 'login',
         REGISTER: 'register',
+        DASHBOARD: 'dashboard',
+        MANAGE_POST: 'manage-post',
+        MANAGE_USER: 'manage-user',
+        MANAGE_LIKE: 'manage-like',
+        MANAGE_COMMENT: 'manage-comment',
+        MANAGE_NOTIFICATION: 'manage-notification',
     }
 }

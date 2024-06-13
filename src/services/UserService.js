@@ -47,7 +47,7 @@ const getUserById = async (token, id) => {
     return response;
 }
 
-const getAllUser = async (token, value) => {
+const getAllUser = async (token, value = null) => {
     const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/users/getAllUser.php', {
         params: {
             access_token: token,

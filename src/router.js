@@ -12,6 +12,12 @@ import ChangePassword from "./pages/users/changepassword";
 import DetailsUser from "./pages/users/detailsuser";
 import Notify from "./pages/users/notify";
 import DetailsPost from "./pages/users/detailspost";
+import ManageUser from "./pages/admin/manage/ManageUser";
+import ManagePost from "./pages/admin/manage/ManagePost";
+import ManageLike from "./pages/admin/manage/ManageLike";
+import ManageComment from "./pages/admin/manage/ManageComment";
+import ManageNotification from "./pages/admin/manage/ManageNotification";
+import Dashboard from "./pages/admin/dashboard";
 
 const RenderUserRouter = () => {
     const userRouters = [
@@ -57,6 +63,30 @@ const RenderUserRouter = () => {
         {
             path: ROUTERS.ADMIN.REGISTER,
             component: <Register />
+        },
+        {
+            path: ROUTERS.ADMIN.DASHBOARD,
+            component: <Dashboard />
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_USER,
+            component: <ManageUser />
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_POST,
+            component: <ManagePost />
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_LIKE,
+            component: <ManageLike />
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_COMMENT,
+            component: <ManageComment />
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_NOTIFICATION,
+            component: <ManageNotification />
         },
     ];
 
