@@ -14,6 +14,7 @@ import apiUser from '../../../services/UserService';
 const Personal = () => {
     const user = useSelector(state => state.auth.user);
     const token = user && user.jwt;
+    const role = user && user.role;
 
     const navigate = useNavigate();
     const [allPost, setAllPost] = useState([]);
@@ -164,6 +165,10 @@ const Personal = () => {
         }
     }
 
+    const goAmin = () => {
+        navigate('/dashboard');
+    }
+
 
     return (
         <div className='personal'>
@@ -180,6 +185,7 @@ const Personal = () => {
                 <p>Email: {profile.email}</p>
                 <p>Giới thiệu: <br />{profile.bio}</p>
                 <p>Ngày tham gia: {profile.created_at}</p>
+                {role && role === 'admin' && (<button onClick={goAmin} style={{ backgroundColor: '#ccc', border: 'none', padding: '5px', fontWeight: 'bold', borderRadius: '5px' }}>Go to Admin</button>)}
             </div>
             {modalEdit && (
                 <ModalEdit

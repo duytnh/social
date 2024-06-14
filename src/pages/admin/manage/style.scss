@@ -1,4 +1,7 @@
-.manage-post {
+.manage-post,
+.manage-user,
+.manage-like,
+.manage-comment {
     background-color: rgba(227, 205, 253, 0.247);
     width: 100%;
     max-width: 100%;
@@ -8,4 +11,11 @@
     padding-bottom: 20px;
     overflow-y: auto;
     height: 100vh;
+}
+
+.manage-post::-webkit-scrollbar,
+.manage-user::-webkit-scrollbar,
+.manage-like::-webkit-scrollbar,
+.manage-comment::-webkit-scrollbar {
+    display: none;
 }

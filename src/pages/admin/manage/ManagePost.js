@@ -2,66 +2,39 @@ import React, { useEffect, useState } from 'react'
 import './style.scss'
 import { useSelector } from 'react-redux';
 import AlertError from '../../../components/Alert/AlertError';
-import { textFilter } from 'react-bootstrap-table2-filter';
+import AlertSuccess from '../../../components/Alert/AlertSuccess';
 import apiAnalytics from '../../../services/Analytics';
-import TableComponent from '../../../components/Table';
+import apiPost from '../../../services/PostService';
+import Table from '../../../components/Table';
 
 function ManagePost() {
     const user = useSelector(state => state.auth.user);
     const token = user && user.jwt;
 
-    const [allUser, setAllUser] = useState([]);
+    const [allPost, setAllPost] = useState([]);
     const [error, setError] = useState('');
-    const [showTable, setShowTable] = useState(false);
+    const [message, setMessage] = useState('');
 
-    let columns = [
-        { dataField: 'post_id', text: 'ID', sort: true },
-        { dataField: 'username', text: 'Username ', filter: textFilter() },
-        { dataField: 'description', text: 'Description' },
+    const columns = [
+        { header: 'ID', accessor: 'post_id' },
+        { header: 'Username', accessor: 'username', hideOnSmall: true },
+        { header: 'Description', accessor: 'description' },
     ];
-
-    if (showTable) {
-        columns.push({ dataField: 'created_at', text: 'Date', sort: true });
-    }
-
-
-    const paginationOptions = {
-        sizePerPageList: [
-            { text: '5', value: 5 },
-            { text: '10', value: 10 },
-            { text: 'All', value: allUser.length }
-        ],
-        sizePerPage: 5,
-    };
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setError('');
+            setMessage('');
         }, 3000);
         return () => clearTimeout(timer);
-    }, [error]);
+    }, [error, message]);
 
     useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 900) {
-                setShowTable(true);
-            } else {
-                setShowTable(false);
-            }
-        }
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-
-    }, [showTable])
-
-    useEffect(() => {
-        const fetchAllUser = async () => {
+        const fetchAllPost = async () => {
             try {
                 const response = await apiAnalytics.getAllPost(token);
                 if (response.data.status === 200) {
-                    setAllUser(response.data.data);
+                    setAllPost(response.data.data);
                 } else {
                     setError(response.data.message);
                 }
@@ -70,12 +43,28 @@ function ManagePost() {
             }
         };
 
-        fetchAllUser();
+        fetchAllPost();
     }, [token]);
+
+    const handleDelete = async (post) => {
+        try {
+            const response = await apiPost.deletePost(post.post_id, token);
+            if (response.data.status === 200) {
+                setAllPost(allPost.filter(p => p.post_id !== post.post_id));
+                setMessage(response.data.message);
+            } else {
+                setError(response.data.message);
+            }
+        } catch (error) {
+            setError('Máy chủ không phản hồi');
+        }
+    };
+
     return (
         <div className='manage-post'>
-            <TableComponent data={allUser} columns={columns} keyId={'post_id'} paginationOptions={paginationOptions} />
+            <Table data={allPost} columns={columns} itemsPerPage={6} onDelete={handleDelete} />
             {error && (<AlertError message={error} />)}
+            {message && (<AlertSuccess message={message} />)}
         </div>
     )
 }

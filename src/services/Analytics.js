@@ -36,6 +36,65 @@ const getAllPost = async (token) => {
     return response;
 }
 
-const apiAnalytics = { countPostAndUser, countPostByUser, countLikeCommentPost, getAllPost };
+const getAllUser = async (token) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/getAllUser.php', {
+        params: {
+            access_token: token,
+        }
+    });
+    return response;
+}
+
+const getAllLike = async (token) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/getAllLike.php', {
+        params: {
+            access_token: token,
+        }
+    });
+    return response;
+}
+
+const getAllComment = async (token) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/getAllComment.php', {
+        params: {
+            access_token: token,
+        }
+    });
+    return response;
+}
+
+const getAllNotify = async (token) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/getAllNotify.php', {
+        params: {
+            access_token: token,
+        }
+    });
+    return response;
+}
+
+const deleteLikeComment = async (id, token, action) => {
+    const response = await axios.post('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/deleteLikeComment.php', {
+        idDelete: id,
+        access_token: token,
+        action: action
+    }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    return response;
+}
+
+const apiAnalytics = {
+    countPostAndUser,
+    countPostByUser,
+    countLikeCommentPost,
+    getAllPost,
+    getAllUser,
+    getAllLike,
+    getAllComment,
+    getAllNotify,
+    deleteLikeComment
+};
 
 export default apiAnalytics;
