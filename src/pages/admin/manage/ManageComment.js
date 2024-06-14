@@ -5,6 +5,7 @@ import AlertError from '../../../components/Alert/AlertError';
 import AlertSuccess from '../../../components/Alert/AlertSuccess';
 import apiAnalytics from '../../../services/Analytics';
 import Table from '../../../components/Table';
+import ConfirmModal from '../../../components/Alert/ConfirmModal';
 
 function ManageComment() {
     const user = useSelector(state => state.auth.user);
@@ -13,6 +14,8 @@ function ManageComment() {
     const [allCmt, setAllCmt] = useState([]);
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCmt, setSelectedCmt] = useState(null);
 
     const columns = [
         { header: 'cID', accessor: 'comment_id' },
@@ -61,11 +64,33 @@ function ManageComment() {
         }
     };
 
+    const confirmDelete = (comment) => {
+        setSelectedCmt(comment);
+        setShowModal(true);
+    };
+
+    const handleConfirmDelete = (comment) => {
+        handleDelete(comment);
+        setShowModal(false);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedCmt(null);
+    };
+
     return (
         <div className='manage-comment'>
-            <Table data={allCmt} columns={columns} itemsPerPage={6} onDelete={handleDelete} />
+            <Table data={allCmt} columns={columns} itemsPerPage={6} onDelete={confirmDelete} />
             {error && (<AlertError message={error} />)}
             {message && (<AlertSuccess message={message} />)}
+            {showModal && (
+                <ConfirmModal
+                    onClose={closeModal}
+                    onConfirm={handleConfirmDelete}
+                    data={selectedCmt}
+                />
+            )}
         </div>
     )
 }

@@ -75,3 +75,37 @@
         color: rgb(179, 59, 59);
     }
 }
+
+
+.modal-confirm {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+.btn-confirm {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    cursor: pointer;
+}

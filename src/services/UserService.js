@@ -104,6 +104,19 @@ const getSendFriend = async (token) => {
     return response;
 }
 
-const apiUser = { RegisterUser, LoginUser, getUser, getUserById, getAllUser, getSendFriend, updateProfile, sendCodePassword, changePassword };
+const deleteUser = async (id, token) => {
+    const response = await axios.post('https://booksfacefake.000webhostapp.com/mediaBE/api/users/deleteUser.php', {
+        userId: id,
+        access_token: token
+    }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    return response;
+}
+
+const apiUser = { RegisterUser, LoginUser, getUser, getUserById, getAllUser, getSendFriend, updateProfile, sendCodePassword, changePassword, deleteUser };
 
 export default apiUser;

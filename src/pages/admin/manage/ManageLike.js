@@ -5,6 +5,7 @@ import AlertError from '../../../components/Alert/AlertError';
 import AlertSuccess from '../../../components/Alert/AlertSuccess';
 import apiAnalytics from '../../../services/Analytics';
 import Table from '../../../components/Table';
+import ConfirmModal from '../../../components/Alert/ConfirmModal';
 
 function ManageLike() {
     const user = useSelector(state => state.auth.user);
@@ -13,6 +14,8 @@ function ManageLike() {
     const [allLike, setAllLike] = useState([]);
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [selectedLike, setSelectedLike] = useState(null);
 
     const columns = [
         { header: 'lID', accessor: 'like_id' },
@@ -61,11 +64,33 @@ function ManageLike() {
         }
     };
 
+    const confirmDelete = (like) => {
+        setSelectedLike(like);
+        setShowModal(true);
+    };
+
+    const handleConfirmDelete = (like) => {
+        handleDelete(like);
+        setShowModal(false);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedLike(null);
+    };
+
     return (
         <div className='manage-like'>
-            <Table data={allLike} columns={columns} itemsPerPage={6} onDelete={handleDelete} />
+            <Table data={allLike} columns={columns} itemsPerPage={6} onDelete={confirmDelete} />
             {error && (<AlertError message={error} />)}
             {message && (<AlertSuccess message={message} />)}
+            {showModal && (
+                <ConfirmModal
+                    onClose={closeModal}
+                    onConfirm={handleConfirmDelete}
+                    data={selectedLike}
+                />
+            )}
         </div>
     )
 }

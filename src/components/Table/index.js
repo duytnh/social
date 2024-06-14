@@ -47,7 +47,7 @@ const Table = ({ data, columns, onDelete, itemsPerPage }) => {
     const currentData = sortedData.slice(offset, offset + itemsPerPage);
 
     return (
-        <div className="table-responsive p-3">
+        <div className="table-responsive p-3 animate__animated animate__bounceIn">
             <input
                 type="text"
                 className="form-control mb-3"

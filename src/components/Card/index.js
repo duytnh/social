@@ -3,7 +3,7 @@ import './style.scss'
 
 function Card({ backgroundItem, backgroundBall1, backgroundBall2, btn1, btn2, number, title }) {
     return (
-        <div className='card-item' style={{ backgroundColor: backgroundItem }}>
+        <div className='card-item animate__animated animate__fadeInDown' style={{ backgroundColor: backgroundItem }}>
             <div className='card-ball-1' style={{ backgroundColor: backgroundBall1 }}></div>
             <div className='card-ball-2' style={{ backgroundColor: backgroundBall2 }}></div>
             <div className='btn-card'>

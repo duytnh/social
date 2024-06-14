@@ -191,10 +191,10 @@ function Dashboard() {
                     title='Total User'
                 />
             </div>
-            <div className='chart-container'>
+            <div className='chart-container animate__animated animate__fadeInUp'>
                 <Bar data={data} options={options} />
             </div>
-            <div className='chart-container'>
+            <div className='chart-container animate__animated animate__fadeInUp'>
                 <Line data={dataLine} options={optionsLine} />
             </div>
             {error && (<AlertError message={error} />)}

@@ -38,7 +38,7 @@ function Left({ ...props }) {
 
 
     return (
-        <div className='left' {...props}>
+        <div className='left animate__animated animate__slideInLeft' {...props}>
             <ul>
                 <span>Dashboard</span>
                 <Link className={page === 'dashboard' ? 'active' : ''} to={ROUTERS.ADMIN.DASHBOARD}><i className="fa-solid fa-gauge-high"></i>Dashboard</Link>

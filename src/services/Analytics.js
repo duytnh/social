@@ -9,6 +9,15 @@ const countPostAndUser = async (token) => {
     return response;
 }
 
+const count = async (token) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/count.php', {
+        params: {
+            access_token: token,
+        }
+    });
+    return response;
+}
+
 const countPostByUser = async (token) => {
     const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/countPostByUser.php', {
         params: {
@@ -85,6 +94,18 @@ const deleteLikeComment = async (id, token, action) => {
     return response;
 }
 
+const deleteNotify = async (id, token) => {
+    const response = await axios.post('https://booksfacefake.000webhostapp.com/mediaBE/api/analytics/deleteNotify.php', {
+        idDelete: id,
+        access_token: token
+    }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    return response;
+}
+
 const apiAnalytics = {
     countPostAndUser,
     countPostByUser,
@@ -94,7 +115,9 @@ const apiAnalytics = {
     getAllLike,
     getAllComment,
     getAllNotify,
-    deleteLikeComment
+    deleteLikeComment,
+    deleteNotify,
+    count
 };
 
 export default apiAnalytics;
