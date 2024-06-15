@@ -189,20 +189,18 @@ function MessengerPage() {
         }
     }, [openMessage, allFriendMessage, currentReceiverId, sent, receiverId, allUser]);
 
-    const handleLoseMessage = () => {
+    const handleLoseMessage = async () => {
         setOpenMessage(false);
-        const fetchFriendMessage = async () => {
-            try {
-                const response = await apiMessage.getFriendMessage(token);
-                if (response.data.status === 200) {
-                    setMessenger(response.data.data);
-                } else if (response.data.status === 400) {
-                    setError(response.data.message);
-                }
-            } catch (error) {
-                setError('Máy chủ không phản hồi');
+        try {
+            const response = await apiMessage.getFriendMessage(token);
+            if (response.data.status === 200) {
+                setMessenger(response.data.data);
+            } else if (response.data.status === 400) {
+                setError(response.data.message);
             }
-        };
+        } catch (error) {
+            setError('Máy chủ không phản hồi');
+        }
     }
 
     return (
