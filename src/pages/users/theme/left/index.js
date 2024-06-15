@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './style.scss'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ROUTERS } from '../../../../utils/router';
 
 function Left({ ...props }) {
@@ -33,6 +33,11 @@ function Left({ ...props }) {
             path: ROUTERS.ADMIN.MANAGE_NOTIFICATION,
             icon: <i className="fa-solid fa-bell"></i>,
             name: 'Notifications'
+        },
+        {
+            path: ROUTERS.ADMIN.MANAGE_MESSENGER,
+            icon: <i className="fa-brands fa-facebook-messenger"></i>,
+            name: 'Messages'
         }
     ];
 

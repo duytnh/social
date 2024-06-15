@@ -22,7 +22,8 @@ const MasterLayout = ({ children, ...props }) => {
             page === 'manage-user' ||
             page === 'manage-like' ||
             page === 'manage-comment' ||
-            page === 'manage-notification') {
+            page === 'manage-notification' ||
+            page === 'manage-messenger') {
             document.body.style.paddingTop = '80px';
         } else {
             document.body.style.paddingTop = '110px';
@@ -57,7 +58,8 @@ const MasterLayout = ({ children, ...props }) => {
                 page === 'manage-user' ||
                 page === 'manage-like' ||
                 page === 'manage-comment' ||
-                page === 'manage-notification') ? (
+                page === 'manage-notification' ||
+                page === 'manage-messenger') ? (
                 <div {...props}>
                     <Top showLeft={handleHideShow} />
                     <div style={{ display: 'flex', flexDirection: 'row' }}>

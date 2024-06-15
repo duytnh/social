@@ -121,6 +121,11 @@ function DetailsUser() {
         }
     };
 
+    const openMessagePage = () => {
+        localStorage.setItem('selectedPage', `messenger/${id}`);
+        navigate(`/messenger/${id}`);
+    }
+
     return (
         <div className='personal'>
             <div className='picture'>
@@ -156,6 +161,7 @@ function DetailsUser() {
                                 </div>
                             )
                 }
+                <button className='btnMessage' onClick={openMessagePage}><i className="fa-brands fa-facebook-messenger"></i> Nhắn tin</button>
             </div>
             <div className='info-details'>
                 <p>Email: {profile.email}</p>

@@ -1,7 +1,8 @@
 .manage-post,
 .manage-user,
 .manage-like,
-.manage-comment {
+.manage-comment,
+.manage-message {
     background-color: rgba(227, 205, 253, 0.247);
     width: 100%;
     max-width: 100%;
@@ -16,6 +17,7 @@
 .manage-post::-webkit-scrollbar,
 .manage-user::-webkit-scrollbar,
 .manage-like::-webkit-scrollbar,
-.manage-comment::-webkit-scrollbar {
+.manage-comment::-webkit-scrollbar,
+.manage-message::-webkit-scrollbar {
     display: none;
 }

@@ -8,6 +8,7 @@ export const ROUTERS = {
         DETAILS_USER: 'details-user',
         DETAILS_POST: 'details-post',
         NOTIFY: 'notify',
+        MESSENGER: 'messenger',
     },
     ADMIN: {
         LOGIN: 'login',
@@ -18,5 +19,6 @@ export const ROUTERS = {
         MANAGE_LIKE: 'manage-like',
         MANAGE_COMMENT: 'manage-comment',
         MANAGE_NOTIFICATION: 'manage-notification',
+        MANAGE_MESSENGER: 'manage-messenger',
     }
 }

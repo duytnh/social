@@ -17,7 +17,9 @@ import ManagePost from "./pages/admin/manage/ManagePost";
 import ManageLike from "./pages/admin/manage/ManageLike";
 import ManageComment from "./pages/admin/manage/ManageComment";
 import ManageNotification from "./pages/admin/manage/ManageNotification";
+import ManageMessenger from "./pages/admin/manage/ManageMessage";
 import Dashboard from "./pages/admin/dashboard";
+import MessengerPage from "./pages/users/messenger";
 
 const RenderUserRouter = () => {
     const userRouters = [
@@ -52,6 +54,10 @@ const RenderUserRouter = () => {
         {
             path: ROUTERS.USER.NOTIFY,
             component: <Notify />
+        },
+        {
+            path: ROUTERS.USER.MESSENGER + "/:id?",
+            component: <MessengerPage />
         }
     ];
 
@@ -88,6 +94,10 @@ const RenderUserRouter = () => {
             path: ROUTERS.ADMIN.MANAGE_NOTIFICATION,
             component: <ManageNotification />
         },
+        {
+            path: ROUTERS.ADMIN.MANAGE_MESSENGER,
+            component: <ManageMessenger />
+        }
     ];
 
     const allRouters = [...userRouters, ...adminRouters];

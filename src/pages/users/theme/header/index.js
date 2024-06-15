@@ -38,6 +38,10 @@ function Header() {
             icon: <i className="fa-solid fa-bell"></i>
         },
         {
+            path: ROUTERS.USER.MESSENGER,
+            icon: <i className="fa-brands fa-facebook-messenger"></i>
+        },
+        {
             path: ROUTERS.USER.INFO,
             icon: <i className="fa-solid fa-user"></i>
         }

@@ -1,0 +1,75 @@
+.icon-mesage-friend {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 2%;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    background-color: #fff;
+
+    .mesage-friend-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+
+    .btn-add-messages {
+        padding: 0 20px;
+
+        button {
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: none;
+            background-color: rgb(39, 39, 252);
+            color: #fff;
+            box-shadow: 0px 4px 5px -1px rgba(0, 0, 0, 0.45);
+        }
+
+        button:hover {
+            background-color: rgb(64, 64, 211);
+            color: #fff;
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .icon-mesage-friend {
+        width: 96%;
+        margin: 6px 2%;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+
+    .icon-mesage-friend {
+        width: 90%;
+        margin: 6px 5%;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+
+    .icon-mesage-friend {
+        width: 70%;
+        margin: 6px 15%;
+    }
+}
