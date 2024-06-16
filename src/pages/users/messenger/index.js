@@ -214,7 +214,7 @@ function MessengerPage() {
     return (
         <div className='messenger-page p-3'>
             <center><button onClick={newMessenger} className='btn-add-message'><i className="fa-solid fa-plus"></i></button></center>
-            <center><button onClick={chatVideo} className='btn btn-danger'>Chat video</button></center>
+            {/* <center><button onClick={chatVideo} className='btn btn-danger'>Chat video</button></center> */}
             <p className='text-center text-danger'>Lưu ý: Chúng tôi sẽ xóa cuộc trò chuyện của bạn sau 24 giờ.</p>
             {showFriend && (
                 <div className='show-friend'>
