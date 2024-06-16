@@ -51,8 +51,10 @@ function Messenger({ avatar_reciver, fullname_reciver, dataReceived, dataSent, s
             </div>
 
             <div className='messenger-footer'>
-                <input onChange={(e) => onChangeInputMessage(e)} value={message} type='text' placeholder='Nhập nội dung...' required />
-                <button onClick={sendMessage}><i className="fa-regular fa-paper-plane"></i></button>
+                <form acceptCharset="UTF-8">
+                    <input onChange={(e) => onChangeInputMessage(e)} value={message} type='text' placeholder='Nhập nội dung...' required />
+                    <button onClick={(e) => sendMessage(e)}><i className="fa-regular fa-paper-plane"></i></button>
+                </form>
             </div>
         </div>
     );

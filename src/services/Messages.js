@@ -28,6 +28,16 @@ const countMessage = async (token) => {
     return response;
 }
 
+const countReceiveAndSendMessage = async (token, idReceiver) => {
+    const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/messages/countReceiveAndSendMessage.php', {
+        params: {
+            access_token: token,
+            receiver_id: idReceiver
+        }
+    });
+    return response;
+}
+
 const getAllMessage = async (token) => {
     const response = await axios.get('https://booksfacefake.000webhostapp.com/mediaBE/api/messages/getAllMessage.php', {
         params: {
@@ -63,6 +73,6 @@ const deleteMessage = async (token, sender_id, receiver_id) => {
     return response;
 }
 
-const apiMessage = { getFriendMessage, getMessage, sendMessage, countMessage, getAllMessage, deleteMessage };
+const apiMessage = { getFriendMessage, getMessage, sendMessage, countMessage, getAllMessage, deleteMessage, countReceiveAndSendMessage };
 
 export default apiMessage;

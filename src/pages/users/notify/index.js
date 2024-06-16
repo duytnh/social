@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import './style.scss'
-import Notification from '../../../components/Notifications/Notification'
+import React, { useEffect, useState } from 'react';
+import './style.scss';
+import Notification from '../../../components/Notifications/Notification';
 import { useSelector } from 'react-redux';
 import apiPost from '../../../services/PostService';
 import AlertError from '../../../components/Alert/AlertError';
@@ -19,7 +19,8 @@ function Notificate() {
             try {
                 const response = await apiPost.getNotify(token);
                 if (response.data.status === 200) {
-                    setNotifys(response.data.data);
+                    const uniqueNotifications = removeDuplicates(response.data.data, 'notification_id');
+                    setNotifys(uniqueNotifications);
                 } else if (response.data.status === 400) {
                     setError(response.data.message);
                 }
@@ -35,8 +36,18 @@ function Notificate() {
             setError('');
         }, 3000);
         return () => clearTimeout(timer);
-
     }, [error]);
+
+    const removeDuplicates = (array, key) => {
+        return array.reduce((acc, current) => {
+            const x = acc.find(item => item[key] === current[key]);
+            if (!x) {
+                return acc.concat([current]);
+            } else {
+                return acc;
+            }
+        }, []);
+    };
 
     const detailsPost = async (idPost, friendId, notifyId) => {
         const response = await apiPost.readNotify(notifyId);
@@ -51,7 +62,7 @@ function Notificate() {
         } else if (response.data.status === 400) {
             setError(response.data.message);
         }
-    }
+    };
 
     return (
         <div className='notify'>
@@ -77,7 +88,7 @@ function Notificate() {
             }) : <span style={{ paddingBottom: '30px !important' }}>Không có thông báo nào</span>}
             {error && (<AlertError message={error} />)}
         </div>
-    )
+    );
 }
 
-export default Notificate
+export default Notificate;

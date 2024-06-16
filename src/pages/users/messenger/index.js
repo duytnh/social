@@ -7,13 +7,13 @@ import AlertError from '../../../components/Alert/AlertError';
 import Messenger from '../../../components/Messenger/Messenger';
 import apiFriendships from '../../../services/FriendshipService';
 import FriendMessage from '../../../components/Friend/FriendMessage';
-import { useParams } from 'react-router-dom'; // Import useNavigate và useParams từ react-router-dom
+import { useParams } from 'react-router-dom';
 import apiUser from '../../../services/UserService';
 
 function MessengerPage() {
     const user = useSelector(state => state.auth.user);
     const token = user && user.jwt;
-    const { id: receiverId } = useParams(); // Lấy receiverId từ URL nếu có
+    const { id: receiverId } = useParams();
 
     const [messenger, setMessenger] = useState(null);
     const [received, setReceived] = useState([]);
@@ -32,7 +32,7 @@ function MessengerPage() {
                 const response = await apiMessage.getFriendMessage(token);
                 if (response.data.status === 200) {
                     setMessenger(response.data.data);
-                } else if (response.data.status === 400) {
+                } else {
                     setError(response.data.message);
                 }
             } catch (error) {
@@ -48,7 +48,7 @@ function MessengerPage() {
                 const response = await apiUser.getAllUser(token, null);
                 if (response.data.status === 200) {
                     setAllUser(response.data.data);
-                } else if (response.data.status === 400) {
+                } else {
                     setError(response.data.message);
                 }
             } catch (error) {
@@ -74,7 +74,7 @@ function MessengerPage() {
             if (response.data.status === 200) {
                 setReceived(response.data.data.received || []);
                 setSent(response.data.data.sent || []);
-            } else if (response.data.status === 400) {
+            } else {
                 setError(response.data.message);
             }
         } catch (error) {
@@ -92,7 +92,8 @@ function MessengerPage() {
         setMessage(e.target.value);
     };
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
         try {
             if (receiverId) {
                 await apiMessage.sendMessage(token, Number(receiverId), message);
@@ -105,7 +106,6 @@ function MessengerPage() {
         }
     };
 
-    // Polling for new messages
     useEffect(() => {
         let polling;
 
@@ -116,7 +116,7 @@ function MessengerPage() {
                     if (response.data.status === 200) {
                         setReceived(response.data.data.received || []);
                         setSent(response.data.data.sent || []);
-                    } else if (response.data.status === 400) {
+                    } else {
                         setError(response.data.message);
                     }
                 } catch (error) {
@@ -125,11 +125,12 @@ function MessengerPage() {
             };
 
             fetchMessages();
-            polling = setInterval(fetchMessages, 5000); // Poll every 5 seconds
+            polling = setInterval(fetchMessages, 3000);
         }
 
         return () => clearInterval(polling);
     }, [openMessage, token, currentReceiverId]);
+
 
     const newMessenger = async () => {
         setShowFriend(!showFriend);
@@ -137,7 +138,7 @@ function MessengerPage() {
             const response = await apiFriendships.getAllFriend(token, null, 6, null);
             if (response.data.status === 200) {
                 setAllFriendMessage(response.data.data);
-            } else if (response.data.status === 400) {
+            } else {
                 setError(response.data.message);
             }
         } catch (error) {
@@ -155,7 +156,7 @@ function MessengerPage() {
             if (response.data.status === 200) {
                 setReceived(response.data.data.received || []);
                 setSent(response.data.data.sent || []);
-            } else if (response.data.status === 400) {
+            } else {
                 setError(response.data.message);
             }
         } catch (error) {
@@ -195,7 +196,7 @@ function MessengerPage() {
             const response = await apiMessage.getFriendMessage(token);
             if (response.data.status === 200) {
                 setMessenger(response.data.data);
-            } else if (response.data.status === 400) {
+            } else {
                 setError(response.data.message);
             }
         } catch (error) {
