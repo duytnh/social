@@ -9,6 +9,7 @@ export const ROUTERS = {
         DETAILS_POST: 'details-post',
         NOTIFY: 'notify',
         MESSENGER: 'messenger',
+        VIDEOCHAT: 'video-chat',
     },
     ADMIN: {
         LOGIN: 'login',

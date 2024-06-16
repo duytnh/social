@@ -7,7 +7,7 @@ import AlertError from '../../../components/Alert/AlertError';
 import Messenger from '../../../components/Messenger/Messenger';
 import apiFriendships from '../../../services/FriendshipService';
 import FriendMessage from '../../../components/Friend/FriendMessage';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiUser from '../../../services/UserService';
 
 function MessengerPage() {
@@ -25,6 +25,8 @@ function MessengerPage() {
     const [showFriend, setShowFriend] = useState(false);
     const [currentReceiverId, setCurrentReceiverId] = useState(null);
     const [allUser, setAllUser] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFriendMessage = async () => {
@@ -204,9 +206,15 @@ function MessengerPage() {
         }
     }
 
+    const chatVideo = () => {
+        localStorage.setItem('selectedPage', 'video-chat');
+        navigate('/video-chat');
+    }
+
     return (
         <div className='messenger-page p-3'>
             <center><button onClick={newMessenger} className='btn-add-message'><i className="fa-solid fa-plus"></i></button></center>
+            <center><button onClick={chatVideo} className='btn btn-danger'>Chat video</button></center>
             <p className='text-center text-danger'>Lưu ý: Chúng tôi sẽ xóa cuộc trò chuyện của bạn sau 24 giờ.</p>
             {showFriend && (
                 <div className='show-friend'>

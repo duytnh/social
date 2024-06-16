@@ -20,6 +20,7 @@ import ManageNotification from "./pages/admin/manage/ManageNotification";
 import ManageMessenger from "./pages/admin/manage/ManageMessage";
 import Dashboard from "./pages/admin/dashboard";
 import MessengerPage from "./pages/users/messenger";
+import RoomVideoChat from "./pages/users/chatvideo";
 
 const RenderUserRouter = () => {
     const userRouters = [
@@ -54,6 +55,10 @@ const RenderUserRouter = () => {
         {
             path: ROUTERS.USER.NOTIFY,
             component: <Notify />
+        },
+        {
+            path: ROUTERS.USER.VIDEOCHAT,
+            component: <RoomVideoChat />
         },
         {
             path: ROUTERS.USER.MESSENGER + "/:id?",
